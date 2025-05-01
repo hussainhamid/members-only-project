@@ -5,9 +5,7 @@ const SQL = `
 
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        first_name TEXT NOT NULL,
-        last_name TEXT NOT NULL,
-        full_name TEXT CONCAT(first_name, last_name),
+        username TEXT UNIQUE,
         email TEXT UNIQUE,
         password TEXT NOT NULL,
         status TEXT DEFAULT 'member'
@@ -19,17 +17,18 @@ const SQL = `
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
         title TEXT NOT NULL,
         message TEXT NOT NULL,
-        time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+        time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-    INSERT INTO users (first_name, last_name, password) 
+    INSERT INTO users (username, password) 
     VALUES
-        ('dave', 'smith', 'password');
+        ('dave smith', 'password');
 
     
-    INSERT INTO messages (title, message) 
+    INSERT INTO messages (user_id, title, message) 
     VALUES 
         (
+          (SELECT id FROM users WHERE username = 'dave smith'),
           'Hello world!', 'this is dave here checking.'
          );
 

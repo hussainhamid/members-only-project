@@ -8,6 +8,12 @@ const bcrypt = require("bcryptjs");
 const pool = require("./db/pool");
 const pgSession = require("connect-pg-simple")(expressSession);
 
+// exports
+
+const { inserUserRouter } = require("./routers/inserUserRouter");
+
+const { joinTables } = require("./db/query");
+
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -41,8 +47,16 @@ app.use(
 
 app.use(passport.session());
 
-app.get("/", (req, res) => {
-  res.send("Hello world!");
+app.use("/sign-up", inserUserRouter);
+
+app.get("/", async (req, res) => {
+  try {
+    const joined = await joinTables();
+
+    res.render("index", { joined });
+  } catch (err) {
+    console.error("somwthing went wrong in app.js", err);
+  }
 });
 
 app.listen(3000);

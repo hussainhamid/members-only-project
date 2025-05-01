@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+</head>
+
+<body>
+  <h1>Hello world!</h1>
+
+  <table>
+    <tr>
+      <th>id</th>
+      <th>user_id</th>
+      <th>username</th>
+      <th>title</th>
+      <th>message</th>
+    </tr>
+
+    <% joined.forEach(row => { %>
+    <tr>
+      <td><%= row.id %></td>
+      <td><%= row.user_id %></td>
+      <td><%= row.username %></td>
+      <td><%= row.title %></td>
+      <td><%= row.message %></td>
+    </tr>
+    <% }) %>
+  </table>
+
+
+  <button onclick="location.href='/sign-up'">sign-up</button>
+</body>
+
+</html>
