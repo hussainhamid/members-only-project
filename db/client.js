@@ -6,7 +6,7 @@ const SQL = `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         username TEXT UNIQUE,
-        email TEXT UNIQUE,
+        email TEXT,
         password TEXT NOT NULL,
         status TEXT DEFAULT 'member'
     );

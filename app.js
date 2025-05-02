@@ -7,10 +7,12 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const pool = require("./db/pool");
 const pgSession = require("connect-pg-simple")(expressSession);
+require("./config/passport");
 
 // exports
 
 const { inserUserRouter } = require("./routers/inserUserRouter");
+const { logInRouter } = require("./routers/logInRouter");
 
 const { joinTables } = require("./db/query");
 
@@ -49,13 +51,16 @@ app.use(passport.session());
 
 app.use("/sign-up", inserUserRouter);
 
+app.use("/log-in", logInRouter);
+
 app.get("/", async (req, res) => {
   try {
-    const joined = await joinTables();
+    const { rows } = await pool.query(`SELECT * FROM users`);
 
-    res.render("index", { joined });
+    res.render("index", { user: rows, currentUser: req.user });
   } catch (err) {
-    console.error("somwthing went wrong in app.js", err);
+    console.error("error happende in app.js:", err);
+    return err;
   }
 });
 
