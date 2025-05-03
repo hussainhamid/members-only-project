@@ -8,6 +8,12 @@
 </head>
 
 <body>
+  <% if (currentUser) { %>
+  <h1>you have logged in as <%= currentUser.username %></h1>
+
+  <button onclick="location.href='/log-out'">Log Out</button>
+  <% } else { %>
+
   <h1>Log in</h1>
 
   <form action="/log-in" method="POST">
@@ -24,6 +30,8 @@
 
     <button type="submit">Log in</button>
   </form>
+
+  <% } %>
 </body>
 
 </html>

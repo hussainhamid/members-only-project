@@ -13,6 +13,8 @@ require("./config/passport");
 
 const { inserUserRouter } = require("./routers/inserUserRouter");
 const { logInRouter } = require("./routers/logInRouter");
+const { logOutRouter } = require("./routers/logOutRouter");
+const { sendMesageRouter } = require("./routers/sendMessageRouter");
 
 const { joinTables } = require("./db/query");
 
@@ -53,9 +55,13 @@ app.use("/sign-up", inserUserRouter);
 
 app.use("/log-in", logInRouter);
 
+app.use("/log-out", logOutRouter);
+
+app.use("/send-message", sendMesageRouter);
+
 app.get("/", async (req, res) => {
   try {
-    const { rows } = await pool.query(`SELECT * FROM users`);
+    const { rows } = await joinTables();
 
     res.render("index", { user: rows, currentUser: req.user });
   } catch (err) {

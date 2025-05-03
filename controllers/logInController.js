@@ -3,7 +3,7 @@ const passport = require("passport");
 require("../config/passport");
 
 async function logInGet(req, res) {
-  res.render("logIn");
+  res.render("logIn", { currentUser: req.user });
 }
 
 async function logInPost(req, res, next) {
