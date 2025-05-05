@@ -10,6 +10,10 @@
 <body>
   <h1>sign up</h1>
 
+  <% if (sameUsername) { %>
+  <h1>this username already exists</h1>
+  <% } %>
+
   <form action="/sign-up" method="POST">
 
 
@@ -22,8 +26,11 @@
     <label for="password">* password</label>
     <input class="passwordnputs" name="password" placeholder="password" type="password" required />
 
-    <button type="submit">sign-up</button>
+    <button type="submit">sign-in</button>
   </form>
+
+  <button onclick="location.href='/log-in'">Log In</button>
+
 </body>
 
 </html>

@@ -15,6 +15,7 @@ const { inserUserRouter } = require("./routers/inserUserRouter");
 const { logInRouter } = require("./routers/logInRouter");
 const { logOutRouter } = require("./routers/logOutRouter");
 const { sendMesageRouter } = require("./routers/sendMessageRouter");
+const { renderHomeRouter } = require("./routers/renderHomeRouter");
 
 const { joinTables } = require("./db/query");
 
@@ -51,6 +52,8 @@ app.use(
 
 app.use(passport.session());
 
+app.use("/", renderHomeRouter);
+
 app.use("/sign-up", inserUserRouter);
 
 app.use("/log-in", logInRouter);
@@ -58,16 +61,5 @@ app.use("/log-in", logInRouter);
 app.use("/log-out", logOutRouter);
 
 app.use("/send-message", sendMesageRouter);
-
-app.get("/", async (req, res) => {
-  try {
-    const { rows } = await joinTables();
-
-    res.render("index", { user: rows, currentUser: req.user });
-  } catch (err) {
-    console.error("error happende in app.js:", err);
-    return err;
-  }
-});
 
 app.listen(3000);

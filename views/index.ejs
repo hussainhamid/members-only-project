@@ -11,39 +11,37 @@
   <h1>Hello world!</h1>
 
   <% if (currentUser) { %>
-  <h1>you have logged in as <%= currentUser.username %></h1>
+  <h1>you have logged in as: <%= currentUser.username %></h1>
 
   <button onclick="location.href='/send-message'">send message</button>
 
   <button onclick="location.href='/log-out'">Log Out</button>
-  <% } %>
 
 
   <table>
     <tr>
-      <th>id</th>
-      <th>user_id</th>
       <th>username</th>
       <th>title</th>
       <th>message</th>
       <th>status</th>
+      <th>time</th>
     </tr>
 
     <% user.forEach(row => { %>
     <tr>
-      <td><%= row.id %></td>
-      <td><%= row.user_id %></td>
       <td><%= row.username %></td>
       <td><%= row.title %></td>
       <td><%= row.message %></td>
       <td><%= row.status %></td>
+      <td><%= row.time %></td>
     </tr>
     <% }) %>
   </table>
-
-
+  <% } else { %>
   <button onclick="location.href='/sign-up'">sign-up</button>
   <button onclick="location.href='/log-in'">Log in</button>
+  <% } %>
+
 
 </body>
 

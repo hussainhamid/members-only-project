@@ -34,4 +34,16 @@ async function getEverything(username) {
   ]);
 }
 
-module.exports = { joinTables, insertUser, getEverything, insertMessage };
+async function getAllUsers() {
+  const { rows } = await pool.query("SELECT username FROM users");
+
+  return rows.map((row) => row.username);
+}
+
+module.exports = {
+  joinTables,
+  insertUser,
+  getEverything,
+  insertMessage,
+  getAllUsers,
+};
