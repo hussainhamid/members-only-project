@@ -1,0 +1,65 @@
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
+:root {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* sign up form */
+
+.form-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  font-size: large;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.form {
+  width: 350px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: end;
+  justify-content: center;
+  padding-right: 90px;
+  padding-bottom: 40px;
+
+  border: 2px solid grey;
+  border-radius: 20px;
+}
+
+.heading {
+  display: flex;
+  align-self: center;
+  padding-left: 90px;
+}
+
+.btns {
+  display: flex;
+  gap: 30px;
+  align-self: center;
+  padding-left: 80px;
+  padding-top: 20px;
+}
+
+.btn {
+  font-size: large;
+}
+
+.err-div {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
