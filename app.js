@@ -16,6 +16,7 @@ const { logInRouter } = require("./routers/logInRouter");
 const { logOutRouter } = require("./routers/logOutRouter");
 const { sendMesageRouter } = require("./routers/sendMessageRouter");
 const { renderHomeRouter } = require("./routers/renderHomeRouter");
+const { deleteMessageRouter } = require("./routers/deleteMessageRouter");
 
 const { joinTables } = require("./db/query");
 
@@ -61,5 +62,7 @@ app.use("/log-in", logInRouter);
 app.use("/log-out", logOutRouter);
 
 app.use("/send-message", sendMesageRouter);
+
+app.use("/deleteMessage", deleteMessageRouter);
 
 app.listen(3000);

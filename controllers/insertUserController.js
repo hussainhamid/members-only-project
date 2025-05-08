@@ -1,3 +1,4 @@
+require("dotenv").config();
 const db = require("../db/query");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
@@ -8,9 +9,21 @@ async function insertUserControllerGet(req, res) {
 
 async function insertUserControllerPost(req, res, next) {
   try {
+    const adminPassword = process.env.ADMINPASSWORD;
+    const admin = "admin";
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    await db.insertUser(req.body.username, req.body.email, hashedPassword);
+    if (req.body["admin-password"] === adminPassword) {
+      await db.insertAsAdmin(
+        req.body.username,
+        req.body.email,
+        hashedPassword,
+        admin
+      );
+    } else {
+      await db.insertUser(req.body.username, req.body.email, hashedPassword);
+    }
 
     passport.authenticate("local", {
       successRedirect: "/",

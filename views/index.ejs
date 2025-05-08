@@ -19,6 +19,35 @@
   <button onclick="location.href='/log-out'">Log Out</button>
 
 
+  <div class="messages-div">
+    <% user.forEach(row => { %>
+    <div class="message">
+
+      <div class="name">
+        <h4><%= row.username %></h4>
+      </div>
+
+      <div class="title">
+        <h2><%= row.title  %></h2>
+      </div>
+
+      <div class="message">
+        <p><%= row.message %></p>
+      </div>
+
+
+      <% if (status == "admin") { %>
+      <div class="btns">
+        <button class="btn" onclick="confirmDelete(event, <%= row.message_id %>)">Delete</button>
+      </div>
+      <% } %>
+
+
+    </div>
+    <% }) %>
+  </div>
+
+
   <table>
     <tr>
       <th>username</th>
@@ -43,6 +72,19 @@
   <button onclick="location.href='/log-in'">Log in</button>
   <% } %>
 
+
+
+  <script>
+    function confirmDelete(event, id) {
+      const confirmBtn = confirm("Are you sure");
+
+      if (!confirmBtn) {
+        event.preventDefault();
+      } else {
+        window.location.href = `/deleteMessage/${id}`;
+      }
+    }
+  </script>
 
 </body>
 

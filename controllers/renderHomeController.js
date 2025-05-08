@@ -8,6 +8,7 @@ async function renderHome(req, res) {
       user: rows,
       currentUser: req.user,
       sameUsername: false,
+      status: req.user.status,
     });
   } else {
     res.render("signUp", { sameUsername: false });
