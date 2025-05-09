@@ -9,3 +9,12 @@ module.exports = new Pool({
   password: process.env.PASS_ENV,
   port: process.env.DB_PORT_ENV,
 });
+
+//production db using railway public url
+
+module.exports = new Pool({
+  connectionString: process.env.PUBLIC_DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
