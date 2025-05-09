@@ -18,8 +18,6 @@ const { sendMesageRouter } = require("./routers/sendMessageRouter");
 const { renderHomeRouter } = require("./routers/renderHomeRouter");
 const { deleteMessageRouter } = require("./routers/deleteMessageRouter");
 
-const { joinTables } = require("./db/query");
-
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -65,4 +63,4 @@ app.use("/send-message", sendMesageRouter);
 
 app.use("/deleteMessage", deleteMessageRouter);
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
