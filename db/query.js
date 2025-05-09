@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function joinTables() {
   return await pool.query(
-    "SELECT *, messages.id AS message_id FROM messages JOIN users ON users.id = messages.user_id"
+    "SELECT *, messages.id AS message_id FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.id DESC"
   );
 }
 

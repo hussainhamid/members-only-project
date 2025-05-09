@@ -1,13 +1,8 @@
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-} */
-
 :root {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   box-sizing: border-box;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 html,
@@ -24,7 +19,6 @@ body {
   align-items: center;
   height: 80vh;
   font-size: large;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .form {
@@ -60,8 +54,38 @@ body {
   font-size: large;
 }
 
-.err-div {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+/* messages */
+
+.message-div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  padding-bottom: 50px;
+  border-bottom: 2px solid gray;
+  border-radius: 15px;
+  width: 60%;
+  gap: 7px;
 }
 
-/* messages */
+.message-div button {
+  margin-top: 20px;
+}
+
+.message-div:first-child {
+  padding-top: 30px;
+}
+/* nav */
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: auto;
+  height: 30px;
+  border-bottom: 2px solid gray;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 80%;
+}

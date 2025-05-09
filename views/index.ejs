@@ -12,19 +12,20 @@
 
 
   <% if (currentUser) { %>
-  <h1>you have logged in as: <%= currentUser.username %></h1>
 
-  <button onclick="location.href='/send-message'">send message</button>
+  <nav class="nav">
+    <button onclick="location.href='/send-message'">send message</button>
 
-  <button onclick="location.href='/log-out'">Log Out</button>
+    <button onclick="location.href='/log-out'">Log Out</button>
 
+  </nav>
 
   <div class="messages-div">
     <% user.forEach(row => { %>
-    <div class="message">
+    <div class="message-div">
 
       <div class="name">
-        <h4><%= row.username %></h4>
+        <h4><%= row.username %>:</h4>
       </div>
 
       <div class="title">
@@ -35,10 +36,9 @@
         <p><%= row.message %></p>
       </div>
 
-
       <% if (status == "admin") { %>
-      <div class="btns">
-        <button class="btn" onclick="confirmDelete(event, <%= row.message_id %>)">Delete</button>
+      <div class="delete-btn-div">
+        <button class="delete-btn" onclick="confirmDelete(event, <%= row.message_id %>)">Delete</button>
       </div>
       <% } %>
 
@@ -48,28 +48,13 @@
   </div>
 
 
-  <table>
-    <tr>
-      <th>username</th>
-      <th>title</th>
-      <th>message</th>
-      <th>status</th>
-      <th>time</th>
-    </tr>
-
-    <% user.forEach(row => { %>
-    <tr>
-      <td><%= row.username %></td>
-      <td><%= row.title %></td>
-      <td><%= row.message %></td>
-      <td><%= row.status %></td>
-      <td><%= row.time %></td>
-    </tr>
-    <% }) %>
-  </table>
   <% } else { %>
-  <button onclick="location.href='/sign-up'">sign-up</button>
-  <button onclick="location.href='/log-in'">Log in</button>
+
+  <nav class="nav">
+    <button onclick="location.href='/sign-up'">sign-up</button>
+    <button onclick="location.href='/log-in'">Log in</button>
+  </nav>
+
   <% } %>
 
 
